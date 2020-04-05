@@ -7,10 +7,10 @@ This script is designed to suit my needs, but maybe it will suit yours too...
 
 # The script
 * Configure the partitions (LVM on UEFI system using GPT)
-  1. Create GPT partition table
-  2. Create bootable EFI System Partition
-  3. Create partiton for /boot
-  4. Mark remaining partition for LVM
+  * Create GPT partition table
+  * Create bootable EFI System Partition
+  * Create partiton for /boot
+  * Mark remaining partition for LVM
 * Install the basic system
   * base
   * base-devel
