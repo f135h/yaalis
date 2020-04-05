@@ -33,8 +33,9 @@ This script is designed to suit my needs, but maybe it will suit yours too...
 6. Reboot and remove the [original Arch Linux installation media](https://www.archlinux.org/download/) from your device
 7. Login with the standard user and `su`
 8. Edit the `/etc/sudoers` file with nano, use the command `EDITOR=nano visudo`
-9. Logout from root
-10. Voilà!
+9. Uncomment the line `# %wheel ALL=(ALL) ALL`
+10. Logout from root
+11. **Voilà!**
 
 ### Variables
 * **disk**
