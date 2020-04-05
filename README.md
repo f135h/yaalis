@@ -30,7 +30,7 @@ This script is designed to suit my needs, but maybe it will suit yours too...
 2. `wget https://raw.githubusercontent.com/f135h/yaalis/master/yaalis`
 3. `sh yaalis`
 5. Wait...
-6. Reboot (remove the [original Arch Linux installation) media](https://www.archlinux.org/download/) from your device
+6. Reboot and remove the [original Arch Linux installation media](https://www.archlinux.org/download/) from your device
 7. Login and `su`
 8. Edit the `/etc/sudoers` file with nano, use the command `EDITOR=nano visudo`
 9. Logout from root
