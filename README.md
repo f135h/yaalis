@@ -43,11 +43,11 @@ This script is designed to suit my needs, but maybe it will suit yours too...
 * **disk_part_efi**
   efi partition, example: `disk_part_efi=${disk}p1`
 * **disk_part_boot**
-  boot partition, example: `disk_part_efi=${disk}p2`
+  boot partition, example: `disk_part_boot=${disk}p2`
 * **disk_part_lvm**
-  lvm partition, example: `disk_part_efi=${disk}p3`
+  lvm partition, example: `disk_part_lvm=${disk}p3`
 * **lvm_vg**
-  Volume group name
+  Volume group name, example: `lvm_vg=arch-vg`
 * **lvm_lv_root**
   logical volume name for root, example `lvm_lv_root=arch-root`
 * **lvm_lv_root_size**
