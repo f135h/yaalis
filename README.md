@@ -1,4 +1,4 @@
-# arsh
+# yaalis
 This script is designed to suit my needs, but maybe it will suit yours too...
 
 **Warning (1): This script create/delete partitions. Use at your own risks.**
