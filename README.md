@@ -2,6 +2,7 @@
 This script is designed to suit my needs, but maybe, it will be useful for you too...
 
 **Warning (1): This script create/delete partitions. Use at your own risks.**
+
 **Warning (2): This script assume that your disk is fresh and wiped.**
 
 # The script
