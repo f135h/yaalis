@@ -3,7 +3,7 @@ This script is designed to suit my needs, but maybe it will suit yours too...
 
 **Warning (1): This script create/delete partitions. Use at your own risks.**
 
-**Warning (2): This script assume that your disk is wiped**
+**Warning (2): This script assume that your disk is wiped.**
 
 ### The script
 * Configure the partitions (LVM on UEFI system using GPT)
