@@ -31,7 +31,7 @@ This script is designed to suit my needs, but maybe it will suit yours too...
 3. `sh yaalis`
 5. Wait...
 6. Reboot and remove the [original Arch Linux installation media](https://www.archlinux.org/download/) from your device
-7. Login and `su`
+7. Login with the standard user and `su`
 8. Edit the `/etc/sudoers` file with nano, use the command `EDITOR=nano visudo`
 9. Logout from root
 10. Voilà!
