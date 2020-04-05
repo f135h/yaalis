@@ -1,0 +1,70 @@
+#!/bin/bash
+
+disk=sda
+disk_part_efi=${disk}1
+disk_part_boot=${disk}2
+disk_part_lvm=${disk}3
+
+lvm_vg=arch-lvm
+lvm_lv_root=arch-root
+lvm_lv_root_size="-L 15G"
+lvm_lv_home=arch-home
+lvm_lv_home_size="-l 100%FREE"
+
+user_root_pwd=root_pwd
+
+user_user_name=f135h
+user_user_pwd=f135h_pwd
+
+echo
+echo "WARNING: Do you want to install Arch Linux?"
+read -p "Yes/No?" answer
+case ${answer} in
+  yes|Yes|y|Y )
+  ;;
+  * )
+    exit 1
+  ;;
+esac
+echo
+
+parted -s /dev/${disk} mklabel gpt
+parted -s /dev/${disk} mkpart ESP fat32 1MiB 513MiB
+parted -s /dev/${disk} set 1 boot on
+parted -s /dev/${disk} name 1 efi
+parted -s /dev/${disk} mkpart primary 513MiB 1025MiB
+parted -s /dev/${disk} name 2 boot
+parted -s /dev/${disk} mkpart primary 1025MiB 100%
+parted -s /dev/${disk} set 3 lvm on
+parted -s /dev/${disk} name 3 lvm
+
+pvcreate /dev/${disk_part_lvm}
+vgcreate $lvm_vg /dev/${disk_part_lvm}
+lvcreate -n $lvm_lv_root $lvm_lv_root_size $lvm_vg
+lvcreate -n $lvm_lv_home $lvm_lv_home_size $lvm_vg
+
+mkfs.fat -F32 /dev/${disk_part_efi}
+mkfs.ext2 /dev/${disk_part_boot}
+mkfs.btrfs /dev/${lvm_vg}/${lvm_lv_root}
+mkfs.btrfs /dev/${lvm_vg}/${lvm_lv_home}
+
+mount /dev/${lvm_vg}/${lvm_lv_root} /mnt
+mkdir /mnt/{home,boot}
+mount /dev/${disk_part_boot} /mnt/boot
+mkdir /mnt/boot/efi
+mount /dev/${disk_part_efi} /mnt/boot/efi
+mount /dev/${lvm_vg}/${lvm_lv_home} /mnt/home
+
+pacstrap /mnt base base-devel linux linux-firmware efibootmgr btrfs-progs lvm2 grub nano sudo --noconfirm
+genfstab -U -p /mnt > /mnt/etc/fstab
+
+arch-chroot /mnt /bin/bash <<EOF
+sed -i '/^HOOKS=/ s/filesystems/lvm2 filesystems/' /etc/mkinitcpio.conf
+mkinitcpio -p linux
+grub-install --target=x86_64-efi --efi-directory=/boot/efi
+grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o  /boot/efi/EFI/arch/grub.cfg
+echo -e "${user_root_pwd}\n${user_root_pwd}" | passwd root
+useradd -m -G wheel $user_user_name
+echo -e "${user_user_pwd}\n${user_user_pwd}" | passwd $user_user_name
+EOF
