@@ -26,7 +26,7 @@ This script is designed to suit my needs, but maybe, it will be useful for you t
 
 ### Steps
 1. Boot the [original Arch Linux installation media](https://www.archlinux.org/download/)
-2. `wget https://raw.githubusercontent.com/f135h/arsh/master/arsh`
+2. `wget https://raw.githubusercontent.com/f135h/yaalis/master/yaalis`
 3. `sh arsh`
 5. Wait...
 6. Reboot (remove the [original Arch Linux installation) media](https://www.archlinux.org/download/) from your device
