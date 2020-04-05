@@ -5,7 +5,7 @@ This script is designed to suit my needs, but maybe it will suit yours too...
 
 **Warning (2): This script assume that your disk is fresh and wiped.**
 
-# The script
+### The script
 * Configure the partitions (LVM on UEFI system using GPT)
   * Create GPT partition table
   * Create bootable EFI System Partition
